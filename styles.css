@@ -1,0 +1,72 @@
+
+.trabajo-item {
+    background-color: #fff; 
+    border: 1px solid #ddd; 
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 15px; 
+    display: flex;
+    align-items: center;
+}
+
+
+.trabajo-item .trabajo-info {
+    flex-grow: 1;
+    margin-right: 15px; 
+}
+
+.trabajo-item .trabajo-info h3 {
+    margin-top: 0;
+    color: #333;
+}
+
+.trabajo-item .trabajo-info p {
+    color: #666;
+    margin-bottom: 0;
+}
+
+
+.trabajo-item .trabajo-imagen {
+    width: 100px; 
+    height: 100px; 
+    border-radius: 5px;
+    overflow: hidden; 
+    background-color: #eee; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.trabajo-item .trabajo-imagen img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+}
+.accordion {
+    background-color: #003366;
+    color: white;
+    cursor: pointer;
+    padding: 15px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 16px;
+    transition: 0.4s;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+.accordion.active, .accordion:hover {
+    background-color: #002244;
+}
+
+.panel {
+    padding: 0 15px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
