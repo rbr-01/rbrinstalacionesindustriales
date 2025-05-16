@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>RBR Instalaciones Industriales</title>
+  <link rel="stylesheet" href="paraquesealindo.css" />
+  <style>
+    body {
+      transition: background-color 0.5s;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f0f4f8;
+      color: #1a1a1a;
+    }
+    .opaco {
+      opacity: 0.2;
+      pointer-events: none;
+      filter: blur(2px);
+      transition: opacity 0.5s, filter 0.5s;
+    }
+    #servicios {
+      display: none;
+      padding: 20px;
+      background-color: white;
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+      margin: 20px auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+    #busqueda {
+      padding: 10px;
+      width: 100%;
+      max-width: 300px;
+      margin-bottom: 15px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 1em;
+      box-sizing: border-box;
+    }
+    .servicio {
+      border-bottom: 1px solid #ddd;
+      padding: 10px 0;
+    }
+    .navbar {
+      background-color: #007acc;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      color: white;
+      font-weight: bold;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .navbar .logo {
+      font-size: 1.5em;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .navbar nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      margin-left: 15px;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+    .navbar nav a:hover {
+      color: #99d6ff;
+    }
+    main {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 20px;
+      text-align: center;
+    }
+    button.cerrar-btn {
+      padding: 8px 15px;
+      margin-bottom: 15px;
+      cursor: pointer;
+      border: none;
+      background-color: #007acc;
+      color: white;
+      border-radius: 5px;
+      font-size: 1em;
+      transition: background-color 0.3s;
+    }
+    button.cerrar-btn:hover {
+      background-color: #005f99;
+    }
+    button.imprimir-btn {
+      margin-top: 10px;
+      padding: 8px 15px;
+      cursor: pointer;
+      border: none;
+      background: #28a745;
+      color: #fff;
+      border-radius: 5px;
+      font-size: 1em;
+      transition: background-color 0.3s;
+    }
+    button.imprimir-btn:hover {
+      background: #218838;
+    }
+    button.pdf-btn {
+      margin-top: 10px;
+      padding: 8px 15px;
+      cursor: pointer;
+      border: none;
+      background: #0069d9;
+      color: #fff;
+      border-radius: 5px;
+      font-size: 1em;
+      transition: background-color 0.3s;
+      margin-left: 10px;
+    }
+    button.pdf-btn:hover {
+      background: #004a99;
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo">💡 RBR</div>
+    <nav>
+      <a href="#">INICIO</a>
+      <a href="#" onclick="mostrarBuscador()">SERVICIOS</a>
+      <a href="#">CONTACTO</a>
+    </nav>
+  </header>
+
+  <main id="contenidoPrincipal">
+    <section class="presentacion">
+      <h1>RBR</h1>
+      <h2>INSTALACIONES INDUSTRIALES</h2>
+      <p>Instalamos, reparamos, optimizamos</p>
+    </section>
+  </main>
+
+  <section id="servicios">
+    <h2>Buscar Servicios</h2>
+    <button class="cerrar-btn" onclick="cerrarBuscador()">Cerrar Buscador</button>
+    <input
+      type="text"
+      id="busqueda"
+      placeholder="Buscar nombre del cliente..."
+      onkeyup="filtrarPorCliente()"
+      autocomplete="off"
+    />
+    <div id="resultadosServicios"></div>
+  </section>
+
+  <script src="holi.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+  <script>
+    function mostrarBuscador() {
+      document.getElementById("servicios").style.display = "block";
+      document.getElementById("servicios").scrollIntoView({ behavior: "smooth" });
+      document.getElementById("contenidoPrincipal").classList.add("opaco");
+    }
+
+    function cerrarBuscador() {
+      document.getElementById("servicios").style.display = "none";
+      document.getElementById("contenidoPrincipal").classList.remove("opaco");
+      document.getElementById("resultadosServicios").innerHTML = "";
+      document.getElementById("busqueda").value = "";
+    }
+
+    function filtrarPorCliente() {
+      const texto = document.getElementById("busqueda").value.toLowerCase().trim();
+      const resultados = document.getElementById("resultadosServicios");
+      resultados.innerHTML = "";
+
+      if (texto === "") return;
+
+      const cliente = clientes.find((c) => c.nombre.toLowerCase().includes(texto));
+
+      if (!cliente) {
+        resultados.innerHTML = "<p>No se encontró ningún cliente con ese nombre.</p>";
+        return;
+      }
+
+      cliente.servicios.forEach((s, index) => {
+        const div = document.createElement("div");
+
+        div.innerHTML = `
+          <div style="
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            background-color: #fdfdfd;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            font-family: 'Segoe UI', sans-serif;
+          ">
+            <div style="border-bottom: 1px solid #ccc; margin-bottom: 10px;">
+              <h3 style="margin: 0;">Hoja de Servicio Nº ${s.numero}</h3>
+              <small style="color: gray;">Fecha: ${s.fecha}</small>
+            </div>
+
+            <table style="width: 100%; border-collapse: collapse; margin-bottom: 15px;">
+              <tr>
+                <td><strong>Cliente:</strong></td><td>${cliente.nombre}</td>
+              </tr>
+              <tr>
+                <td><strong>RUC:</strong></td><td>${s.ruc}</td>
+              </tr>
+              <tr>
+                <td><strong>Tipo:</strong></td><td>${s.tipo}</td>
+              </tr>
+              <tr>
+                <td><strong>Equipo:</strong></td><td>${s.equipo}</td>
+              </tr>
+              <tr>
+                <td><strong>Sucursal:</strong></td><td>${s.sucursal}</td>
+              </tr>
+            </table>
+
+            <div style="margin-bottom: 15px;">
+              <strong>Detalles del trabajo:</strong><br>
+              <div style="background: #f9f9f9; padding: 10px; border-radius: 5px;">${s.detalles}</div>
+            </div>
+
+            <div style="text-align: right; font-size: 1.1em;">
+              <strong>Total: ${s.costo}</strong>
+            </div>
+
+            <button class="imprimir-btn" onclick="window.print()">Imprimir esta hoja</button>
+            <button class="pdf-btn" onclick="descargarPDF(this)">Descargar PDF</button>
+          </div>
+        `;
+
+        resultados.appendChild(div);
+      });
+    }
+
+
+    function descargarPDF(boton) {
+      const hoja = boton.parentElement;
+      html2canvas(hoja).then(canvas => {
+        const imgData = canvas.toDataURL('image/png');
+        const pdf = new jspdf.jsPDF('p', 'mm', 'a4');
+        const pdfWidth = pdf.internal.pageSize.getWidth();
+        const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
+        pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+        pdf.save('hoja-de-servicio.pdf');
+      });
+    }
+  </script>
+</body>
+</html>
