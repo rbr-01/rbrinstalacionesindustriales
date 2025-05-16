@@ -1,72 +1,103 @@
-
-.trabajo-item {
-    background-color: #fff; 
-    border: 1px solid #ddd; 
-    border-radius: 5px;
-    padding: 15px;
-    margin-bottom: 15px; 
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: white;
+  }
+  
+  .navbar {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-}
-
-
-.trabajo-item .trabajo-info {
-    flex-grow: 1;
-    margin-right: 15px; 
-}
-
-.trabajo-item .trabajo-info h3 {
-    margin-top: 0;
-    color: #333;
-}
-
-.trabajo-item .trabajo-info p {
-    color: #666;
-    margin-bottom: 0;
-}
-
-
-.trabajo-item .trabajo-imagen {
-    width: 100px; 
-    height: 100px; 
-    border-radius: 5px;
-    overflow: hidden; 
-    background-color: #eee; 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.trabajo-item .trabajo-imagen img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; 
-}
-.accordion {
-    background-color: #003366;
-    color: white;
-    cursor: pointer;
-    padding: 15px;
-    width: 100%;
+    background-color: #7aa7d9;
+    padding: 10px 20px;
+    border-radius: 0 0 20px 20px;
+  }
+  
+  nav a {
+    margin: 0 15px;
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+  }
+  
+  input#buscador {
+    padding: 5px 10px;
+    border-radius: 10px;
     border: none;
-    text-align: left;
-    outline: none;
-    font-size: 16px;
-    transition: 0.4s;
-    margin-top: 10px;
-    border-radius: 5px;
-}
-
-.accordion.active, .accordion:hover {
-    background-color: #002244;
-}
-
-.panel {
-    padding: 0 15px;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.2s ease-out;
-    background-color: #f1f1f1;
-    border-radius: 5px;
+  }
+  
+  .presentacion {
+    padding: 40px;
+  }
+  
+  .presentacion h1 {
+    font-size: 48px;
+    font-weight: bold;
+  }
+  
+  .presentacion h2 {
+    font-size: 32px;
+    font-weight: bold;
+  }
+  
+  .resultados {
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .card {
+    background-color: #7aa7d9;
+    border-radius: 12px;
+    padding: 20px;
+    width: 250px;
+    color: white;
+    font-weight: bold;
+  }
+  #servicios input {
+    padding: 8px;
+    width: 300px;
     margin-bottom: 10px;
-}
+    border: 1px solid #ccc;
+  }
+  
+  #listaServicios li {
+    margin: 5px 0;
+  }
+  .oculto-para-pdf {
+    display: none !important;
+  }
+  .oculto-para-pdf {
+    display: none !important;
+  }
+  
+  .imprimir-btn, .pdf-btn {
+    margin-top: 10px;
+    padding: 8px 15px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    transition: background-color 0.3s;
+  }
+  
+  .imprimir-btn {
+    background-color: #28a745;
+    color: white;
+  }
+  
+  .imprimir-btn:hover {
+    background-color: #218838;
+  }
+  
+  .pdf-btn {
+    background-color: #0069d9;
+    color: white;
+    margin-left: 10px;
+  }
+  
+  .pdf-btn:hover {
+    background-color: #004a99;
+  }
+  
