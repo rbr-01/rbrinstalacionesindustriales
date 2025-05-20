@@ -96,7 +96,53 @@ body {
     color: white;
     margin-left: 10px;
   }
-  
+  /* Adaptación para pantallas pequeñas */
+@media (max-width: 600px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  nav a {
+    margin: 10px 0;
+  }
+
+  .presentacion {
+    padding: 20px;
+    text-align: center;
+  }
+
+  .presentacion h1 {
+    font-size: 32px;
+  }
+
+  .presentacion h2 {
+    font-size: 24px;
+  }
+
+  #busqueda,
+  #servicios input {
+    width: 100% !important;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .card {
+    width: 100%;
+  }
+
+  .servicio {
+    padding: 10px;
+  }
+
+  button.cerrar-btn,
+  .imprimir-btn,
+  .pdf-btn {
+    width: 100%;
+    margin-top: 10px;
+  }
+}
+
   .pdf-btn:hover {
     background-color: #004a99;
   }
