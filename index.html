@@ -182,7 +182,7 @@ main {
 }
 .swiper-slide {
   width: 300px;
-  height: auto;  /* para que se adapte a la imagen + texto */
+  height: auto; 
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -214,11 +214,11 @@ main {
     <div class="swiper mySwiper">
       <div class="swiper-wrapper">
         <div class="swiper-slide">
-          <img src="foto de la rbr.jpg" />
+          <img src="foto_de_la_rbr.jpg" />
           <p class="slide-text">Camioneta ploteada</p>
         </div>
         <div class="swiper-slide">
-          <img src="foto de papa.jpg" />
+          <img src="foto_de_papa.jpg" />
           <p class="slide-text">Gerente Raul Benitez</p>
         </div>
       </div>
@@ -2427,7 +2427,7 @@ const serviceSheetsData = [
   const tituloContainer = document.getElementById("titulo-container");
   const bienvenidaContainer = document.getElementById("bienvenida-container");
 
-  // ----- Swiper -----
+  
   const swiper = new Swiper(".mySwiper", {
     slidesPerView: "auto",
     spaceBetween:30,
@@ -2465,7 +2465,7 @@ const serviceSheetsData = [
     bienvenidaContainer.innerHTML = `<h2>Bienvenido ${empresa.nombre}</h2>`;
     accordionMenu.innerHTML='';
 
-    // Agrupar servicios por año y mes
+
     const agrupados = {};
     empresa.servicios.forEach(s => {
       if(!s.fecha) return;
@@ -2475,7 +2475,7 @@ const serviceSheetsData = [
       agrupados[y][m].push(s);
     });
 
-    // Crear acordeón años → meses → hojas
+
     Object.keys(agrupados).sort((a,b)=>b-a).forEach(year=>{
       const yearItem = createAccordionItem(year);
       const yearContent = yearItem.querySelector('.accordion-content');
